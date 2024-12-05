@@ -24,9 +24,11 @@ function renderProducts() {
 
 // Function to render the shopping cart
 function renderCart() {
-  const cartList = document.getElementById("cart-list");
+   const cartList = document.getElementById("cart-list");
   cartList.innerHTML = '';  // Clear the cart list before rendering
   const cartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+  // Ensure each item is added to the cart list
   cartItems.forEach(item => {
     const li = document.createElement("li");
     li.classList.add("cart-item");
@@ -40,11 +42,8 @@ function addToCart(productId) {
   const product = products.find(p => p.id === productId);
   let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-  // Add the product to the cart if it is not already there
-  const productInCart = cart.find(item => item.id === productId);
-  if (!productInCart) {
-    cart.push(product);
-  }
+  // Allow duplicates (remove the check for existing items in the cart)
+  cart.push(product);
 
   // Save the updated cart to sessionStorage
   sessionStorage.setItem("cart", JSON.stringify(cart));
