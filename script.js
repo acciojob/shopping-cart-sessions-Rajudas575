@@ -15,7 +15,7 @@ function renderProducts() {
     const li = document.createElement("li");
     li.classList.add("product");
     li.innerHTML = `
-      <span>${product.name} - $${product.price}</span>
+      <span>${product.name} - ${product.price}</span>
       <button onclick="addToCart(${product.id})">Add to Cart</button>
     `;
     productList.appendChild(li);
